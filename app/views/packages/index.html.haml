@@ -1,0 +1,48 @@
+%h1 R packages
+
+#update_now 
+  Next Update at 12.00pm
+  = link_to("update_now", "/update", remote: true)
+
+#counter
+  = "Finished index completion: #{@complete}/#{@count}"
+
+= alphabetical_paginate @alphaParams
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Versions
+      %th Published
+      %th 
+
+
+  %tbody
+    - @packages.each do |package| 
+      %tr.rows
+        %td
+          %h5.package_name
+            %strong
+              = package.name 
+          %span.title= package.title 
+        %td
+          - package.versions.each do |v| 
+            = link_to "#{v} ", package.url(v)
+        %td= time_format(package.publication)
+        %td= link_to 'Download latest', package.url  
+      %tr 
+        %td
+          %strong Authors:
+          %br
+          = package.authors
+        %td{colspan: 3}
+          %strong Maintainer:
+          %br
+          = email_name(package.maintainers)
+      %tr
+        %td{colspan: 4}
+          %strong Description
+          = package.description
+
+

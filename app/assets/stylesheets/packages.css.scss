@@ -1,0 +1,40 @@
+// Place all the styles related to the Packages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.rows td {border-top: 2px solid darkgray;}
+.rows td:first-child{
+	width: 60%;
+}
+
+div.pagination{
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		li{
+			display: inline;
+			margin: 3px;
+			padding: 0;
+			list-style-type: none;
+		}
+		li.active{
+			box-shadow: 0 0 2px rgba(74, 74, 74, 0.9);
+			border-radius: 2px;
+		}
+	}
+}
+
+div#update_now{
+	float:right;
+	font-size: 12px;
+	margin-right: 1%;
+}
+
+div#counter{
+	font-size: 12px;
+	margin-right: 1%;
+}
+
+h1 {text-align: center}

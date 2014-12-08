@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 
@@ -49,3 +50,20 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
 end
+
+# to give it a decent look
+gem 'foundation-rails'
+
+# to write more concise code
+gem "haml-rails"
+
+# delayed job for background task handling, not optimal as it uses active records but 
+# it doesn't need a redis installation and therefore is easier to deploy by someone else
+gem 'delayed_job_active_record'
+
+# pagination
+gem 'alphabetical_paginate'
+
+# cronjob based job scheduling
+gem 'rufus-scheduler'
+
