@@ -21,17 +21,25 @@ class PackagesController < ApplicationController
      @package = Package.find(params[:id])
   end
 
-  # TODO create and update should be merged, both do nearly the same
+  # Create update is used to laverage the general creation/update process
+  # which is also scheduled for 12pm daily. 
   def create
     update_from_cran
     render nothing: true
   end
 
+  # Manually refresh information of a package, if not yet loaded
+  def update 
+    package = Package.find(params[:id])
+    package.update_details
+    redirect_to :back
+  end
+
 
   private
 
-    # TODO needs to moved to the model,  so that the delay function is used the same way
-    # over and over again / and the controller stays clean
+    # This is the actual logic parsing the PACKAGES file and run the update_details
+    # method for DESCRIPTION file attributes as needed
     def update_from_cran
 
       # get packages overview from cran & split the content into single packages
@@ -42,7 +50,7 @@ class PackagesController < ApplicationController
     
         next if cran_pck.empty? # fallback if empty element occurs
 
-        # hashed sanitizes the package into a hash
+        # hashed sanitizes the package into a hash - it is found in the lib/toolkit file
         elements = hashed(cran_pck)
 
         # check if package already exists with version
@@ -50,17 +58,13 @@ class PackagesController < ApplicationController
 
         if pck.nil? # cran package not yet in db
           newPck = create_package(elements) # creates a new record 
-          newPck.delay.update_details # asynchronously update details
+          newPck.delay.update_details # asynchronously update details / "rake jobs:work" should be running 
 
         elsif !pck.versions.include?(elements[:version]) # if version is not yet in db for this package
-          newPck = pck.add_to_array(elements[:version])   # add version
+          newPck = pck.add_to_array(elements[:version])   # add version to package
           newPck.delay.update_details # check for updated information          
         end
       end
     end
-
-    
-    
-
 
 end

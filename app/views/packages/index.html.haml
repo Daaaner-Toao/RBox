@@ -35,10 +35,16 @@
           %strong Authors:
           %br
           = package.authors
-        %td{colspan: 3}
+        %td{colspan: 2}
           %strong Maintainer:
           %br
           = email_name(package.maintainers)
+        %td
+          = link_to("Update again", package_path(package), method: :put )
+          %br
+          %span#updated_at
+            = "Updated at: #{time_format(package.updated_at)}"
+
       %tr
         %td{colspan: 4}
           %strong Description
