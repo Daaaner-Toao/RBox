@@ -20,11 +20,20 @@ require 'rails_helper'
 
 RSpec.describe PackagesController, :type => :controller do
 
+
   # This should return the minimal set of attributes required to create a valid
   # Package. As you add validations to Package, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {"name"=>"A3", 
+    "authors"=>"Scott Fortmann-Roe", 
+    "maintainers"=>"Scott Fortmann-Roe <scottfr@berkeley.edu>", 
+    "versions"=>["0.9.2"], 
+    "publication"=>"Tue, 26 Mar 2013 19:58:40 UTC +00:00", 
+    "title"=>"A3: Accurate, Adaptable, and Accessible Error Metrics for Predictive Models", 
+    "description"=>"This package supplies tools for tabulating and analyzing the results of predictive models. The methods employed are applicable to virtually any predictive model and make comparisons between different methodologies straightforward.", 
+    "created_at"=> "Mon, 08 Dec 2014 08:54:29 UTC +00:00", 
+    "updated_at"=> "Mon, 08 Dec 2014 08:56:36 UTC +00:00" }
   }
 
   let(:invalid_attributes) {
@@ -44,87 +53,5 @@ RSpec.describe PackagesController, :type => :controller do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested package as @package" do
-      package = Package.create! valid_attributes
-      get :show, {:id => package.to_param}, valid_session
-      expect(assigns(:package)).to eq(package)
-    end
-  end
-
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Package" do
-        expect {
-          post :create, {:package => valid_attributes}, valid_session
-        }.to change(Package, :count).by(1)
-      end
-
-      it "assigns a newly created package as @package" do
-        post :create, {:package => valid_attributes}, valid_session
-        expect(assigns(:package)).to be_a(Package)
-        expect(assigns(:package)).to be_persisted
-      end
-
-      it "redirects to the created package" do
-        post :create, {:package => valid_attributes}, valid_session
-        expect(response).to redirect_to(Package.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved package as @package" do
-        post :create, {:package => invalid_attributes}, valid_session
-        expect(assigns(:package)).to be_a_new(Package)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:package => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested package" do
-        package = Package.create! valid_attributes
-        put :update, {:id => package.to_param, :package => new_attributes}, valid_session
-        package.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested package as @package" do
-        package = Package.create! valid_attributes
-        put :update, {:id => package.to_param, :package => valid_attributes}, valid_session
-        expect(assigns(:package)).to eq(package)
-      end
-
-      it "redirects to the package" do
-        package = Package.create! valid_attributes
-        put :update, {:id => package.to_param, :package => valid_attributes}, valid_session
-        expect(response).to redirect_to(package)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the package as @package" do
-        package = Package.create! valid_attributes
-        put :update, {:id => package.to_param, :package => invalid_attributes}, valid_session
-        expect(assigns(:package)).to eq(package)
-      end
-
-      it "re-renders the 'edit' template" do
-        package = Package.create! valid_attributes
-        put :update, {:id => package.to_param, :package => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
 
 end

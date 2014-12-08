@@ -16,7 +16,7 @@ afterwards.
 =end
 
 initial.in "10s" do
-	`curl localhost:3000/create`
+	`curl localhost:3000/update`
 end
 
 

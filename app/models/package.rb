@@ -2,8 +2,6 @@ class Package < ActiveRecord::Base
 	include Toolkit
 	serialize :versions, Array
 
-
-
 	# creates the url of the package for the given version
 	def url(version=self.versions[-1])
 		return "http://cran.r-project.org/src/contrib/#{self.name}_#{version}.tar.gz"
@@ -26,20 +24,9 @@ class Package < ActiveRecord::Base
 		self.save		
 	end
 
-	def self.update_additional_details
-
-      self.all.each do |p| 
-        description = p.get_description_file
-        next if p.publication == p.get_publication_date(description)
-        if p.publication.nil? || p.publication < p.get_publication_date(description) || p.authors.nil?
-          p.update_details(description)
-        end
-      end
-    end
-
-
 	# function for updating the additional information author/maintainer Description
-	def update_details(description)
+	def update_details
+		description = utf_sanitizer(self.get_description_file)
 		self.title = self.cran_value_regex("Title",description)
 		self.publication = self.get_publication_date(description)
 		self.description = self.cran_value_regex("Description",description)
@@ -48,6 +35,7 @@ class Package < ActiveRecord::Base
 		self.updated_at = Time.now	
 		self.save
 	end
+
     
 
 end

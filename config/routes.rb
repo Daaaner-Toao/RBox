@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   # bot will be incorporated into one link for the 
   # process
-  get '/update', to: 'packages#update' 
-  get '/create', to: 'packages#create'
+  get '/update', to: 'packages#create' 
 
   #root
   root to: 'packages#index'
