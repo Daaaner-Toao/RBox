@@ -8,12 +8,13 @@ RSpec.describe PackagesController, :type => :routing do
       expect(:get => "/").to route_to("packages#index")
     end
 
-    it "routes to #update" do
-      expect(:get => "/update").to route_to("packages#update")
-    end
 
-    it "routes to #create" do
-      expect(:get => "/create").to route_to("packages#create")
+    # it's slightly confusing but it makes sense, as the update link
+    # is used to actually update the whole db which generally means
+    # to search and create new elements
+    # and update is reserved for the sinlge update from the view
+    it "routes to #update" do
+      expect(:get => "/update").to route_to("packages#create")
     end
 
 

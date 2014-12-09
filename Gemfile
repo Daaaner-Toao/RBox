@@ -44,7 +44,7 @@ gem 'byebug', group: [:development, :test]
 # get helpful gems for unit and integration testing
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', :require => false # currently included bot not yet in use
   gem 'database_cleaner'
 end
 

@@ -53,6 +53,15 @@ elsewise the background update for additional details won't happen.
 
 `$ rake jobs:work`
 
+To let it run in the background use this
+
+```bash
+script/delayed_job start
+or
+RAILS_ENV=production script/delayed_job start
+```
+
+
 > Due to the nature of delay_job and sqlite, having the worker
 > running at the very first setup might brake him (restart the
 > worker if that happens)

@@ -53,5 +53,15 @@ RSpec.describe PackagesController, :type => :controller do
     end
   end
 
+  describe "count CRAN" do
+    before do
+      @cran_packages_count = open('http://cran.r-project.org/src/contrib/PACKAGES') {|f| f.read }.split("\n\n").length
+    end
+
+    it "Count of cran should be 6000+" do
+      @cran_packages_count.should be > 6000
+    end
+  end
+
 
 end
