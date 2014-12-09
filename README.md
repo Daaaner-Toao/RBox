@@ -1,7 +1,7 @@
 # RBox
 
 Rbox is a RoR Application for indexing packages of a CRAN server.
-The focus was on a clean, qick solution pulling the information fast by pushing the havy-load work into background Tasks.
+The focus is a clean and qick solution which pulls the information fast by pushing the havy-load work into background Tasks.
 
 **[Live Demo](http:cloud.roddia.org:3001)**
 
@@ -14,7 +14,7 @@ The focus was on a clean, qick solution pulling the information fast by pushing 
 * Manuel update function for packages
 
 ## Prerequesites
-In order to deploy RBox with all required dpendencies, following elements are required
+In order to deploy RBox with all required dpendencies, following environment is tested
 * ruby ~> 2.1.2
 * rails ~> 4.1.7
 * bundler ~>1.7.3
