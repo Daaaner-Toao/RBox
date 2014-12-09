@@ -8,10 +8,11 @@ The focus is a clean and qick solution which pulls the information fast by pushi
 ## Features
 * Indexing of all available packages in timely manner
 * Background autocompletion of time intensive tasks 
-* Scheduled update cycle for 12pm daily (adjustable in config/initializers/schedule.rb) 
+* Scheduled update cycle for 12pm GMT+0 daily (adjustable in config/initializers/schedule.rb) 
 * Keeping track and provide different versions for download
 * A usable view alphabetically sorted and paginated
 * Manuel update function for packages
+* JSON (Restful api) support for index/show
 
 ## Prerequesites
 In order to deploy RBox with all required dpendencies, following environment is tested
