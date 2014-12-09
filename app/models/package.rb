@@ -4,6 +4,7 @@ class Package < ActiveRecord::Base
 
 	# creates the url of the package for the given version
 	def url(version=self.versions[-1])
+		return "http://cran.r-project.org/src/contrib/00Archive/#{self.name}/#{self.name}_#{version}.tar.gz" unless version == self.versions[-1]
 		return "http://cran.r-project.org/src/contrib/#{self.name}_#{version}.tar.gz"
 	end
 
