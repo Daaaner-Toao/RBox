@@ -40,3 +40,8 @@ div#counter{
 h1 {text-align: center}
 
 span#updated_at {font-size: 10px;}
+
+a.versions:not(:first-child){ 
+	border-left: 1px solid black;
+	padding: 0 2px 0 2px;
+}

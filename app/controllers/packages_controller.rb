@@ -61,8 +61,8 @@ class PackagesController < ApplicationController
           newPck.delay.update_details # asynchronously update details / "rake jobs:work" should be running 
 
         elsif !pck.versions.include?(elements[:version]) # if version is not yet in db for this package
-          newPck = pck.add_to_array(elements[:version])   # add version to package
-          newPck.delay.update_details # check for updated information          
+          pck.add_to_array(elements[:version]) # add version to package
+          pck.delay.update_details # check for updated information          
         end
       end
     end

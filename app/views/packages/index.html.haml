@@ -27,7 +27,7 @@
           %span.title= package.title 
         %td
           - package.versions.each do |v| 
-            = link_to "#{v} ", package.url(v)
+            = link_to "#{ v} ", package.url(v), class: "versions"
         %td= time_format(package.publication)
         %td= link_to 'Download latest', package.url  
       %tr 
