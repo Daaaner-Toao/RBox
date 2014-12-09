@@ -1,13 +1,23 @@
 # RBox
 
-TODO: Write a project description
+Rbox is a RoR Application for indexing packages of a CRAN server.
+The focus was on a clean, qick solution pulling the information fast by pushing the havy-load work into background Tasks.
 
-## Requirements
+**[Live Demo](http:cloud.roddia.org:3001)**
 
-In order to use the related gems following elements are required
-* [ruby 2.1.2](https://www.google.com)
-* rails 4
-* bundler 
+## Features
+* Indexing of all available packages in timely manner
+* Background autocompletion of time intensive tasks 
+* Scheduled update cycle for 12pm daily (adjustable in config/initializers/schedule.rb) 
+* Keeping track and provide different versions for download
+* A usable view alphabetically sorted and paginated
+* Manuel update function for packages
+
+## Prerequesites
+In order to deploy RBox with all required dpendencies, following elements are required
+* ruby ~> 2.1.2
+* rails ~> 4.1.7
+* bundler ~>1.7.3
 
 
 ## Installation
@@ -15,13 +25,16 @@ After cloning Rbox you should run bundler which is going to add all dependencies
 ```bash
 $ bundle install
 ```
-
+Migrate the Database 
+```bash
+$ rake db:migrate
+or
+$ rake db:migrate RAILS_ENV="production"
+```
 
 
 ## Usage
-```bash
-$ rake db:migrate
-```
+To take the service into use start the server like this
 ```bash
 $ rails s 
 or
@@ -31,11 +44,20 @@ Default the app is going to run at:
 ```bash
 http://localhost:3000
 ```
-It is important to know that for deonstration purposes there is a task scheduled
-in **config/initializer/scheduler.rb** for to start parse the cran cdn right away.
-On an empty db this takes up to a minute, so it only occures once after migration.
+It is important to know that for demonstration purposes there is a task scheduled
+in **config/initializer/scheduler.rb** starting to parse the cran cdn right away.
+On an empty db this can take a few minutes, but it only occures once after migration. ( Approx 1-2 minutes)
 
-If you're able to access the website please start the delay_job server as well,
+If you're able to access the website for the first time please start the delay_job server as well,
 elsewise the background update for additional details won't happen.
 
-`rake jobs:work`
+`$ rake jobs:work`
+
+> Due to the nature of delay_job and sqlite, having the worker
+> running at the very first setup might brake him (restart the
+> worker if that happens)
+
+
+
+
+
