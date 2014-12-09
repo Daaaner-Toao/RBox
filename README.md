@@ -59,7 +59,7 @@ To let it run in the background use this
 ```bash
 script/delayed_job start
 or
-RAILS_ENV=production script/delayed_job start
+RAILS_ENV=production bin/delayed_job start
 ```
 
 
