@@ -14,13 +14,14 @@ as the initial loading time is less then a minute. And the
 completion of the details are kiking in asynchronous 
 afterwards.
 =end
+port = 3000
 
 initial.in "10s" do
-	`curl localhost:3000/update`
+	`curl localhost:#{port}/update`
 end
 
 
 # starts the complete update path at 12pm daily
 scheduler.cron '* 0 * * *' do
-  `curl localhost:3000/update`
+  `curl localhost:#{port}/update`
 end
