@@ -45,9 +45,12 @@ Default the app is going to run at:
 ```bash
 http://localhost:3000
 ```
+If you want to deploy the app on a different port, configure the port in
+**config/initializers/scheduler.rb**
+
 It is important to know that for demonstration purposes there is a task scheduled
-in **config/initializer/scheduler.rb** starting to parse the cran cdn right away.
-On an empty db this can take a few minutes, but it only occures once after migration. ( Approx 1-2 minutes)
+in **scheduler.rb** starting to parse the cran cdn right away. On an empty db this 
+can take a few minutes, but it only occures once after migration. ( Approx 1-2 minutes)
 
 If you're able to access the website for the first time please start the delay_job server as well,
 elsewise the background update for additional details won't happen.
